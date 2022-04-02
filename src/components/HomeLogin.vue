@@ -19,7 +19,7 @@
 
     </form>
 
-    <router-link to="/" class="text-dark fw-bold mt-4">
+    <router-link to="/register" class="text-dark fw-bold mt-4">
       註冊帳號
     </router-link>
 
