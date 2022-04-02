@@ -9,7 +9,7 @@
     </div>
 
     <div class="w-100 d-flex justify-content-center align-items-center">
-      right
+      <router-view></router-view>
     </div>
 
   </div>
