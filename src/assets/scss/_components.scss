@@ -35,3 +35,14 @@
     background-color: lighten($dark, $amount: 15);
   }
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@700&display=swap');
+
+.logo h1 {
+  font-size: 2rem;
+  font-family: 'Baloo Thambi 2';
+}
+
+nav .logo h1 {
+  font-size: 1.5rem;
+}
