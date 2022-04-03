@@ -14,6 +14,8 @@
       <TodoFooter />
     </div>
 
+    <NoTodo v-if="false" />
+
   </main>
 </template>
 
@@ -22,4 +24,5 @@ import TodoInput from './TodoInput.vue'
 import TodoTabs from './TodoTabs.vue'
 import TodoItems from './TodoItems.vue'
 import TodoFooter from './TodoFooter.vue'
+import NoTodo from './NoTodo.vue'
 </script>
