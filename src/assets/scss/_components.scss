@@ -1,3 +1,5 @@
+$todo-gray: #9a9a91;
+
 .form {
 
   label {
@@ -69,4 +71,21 @@ nav .logo img {
   background-color: $white;
   border-radius: 10px;
   padding-right: .25rem;
+}
+.todo-body {
+  background-color: $white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.todo-tabs button {
+  color: $todo-gray;
+  border-radius: 0%;
+  border-bottom: 2px solid #EFEFEF;
+
+  &:active,
+  &.active,
+  &:focus {
+    color: $dark;
+    border-bottom: 2px solid $dark;
+  }
 }
