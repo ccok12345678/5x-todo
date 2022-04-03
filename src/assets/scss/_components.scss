@@ -42,7 +42,18 @@
   font-size: 2rem;
   font-family: 'Baloo Thambi 2';
 }
-
 nav .logo h1 {
   font-size: 1.5rem;
+}
+nav .logo img {
+  width: 33.42px;
+  height: 28.3px;
+}
+
+.navbar {
+  padding: 1rem 2rem;
+}
+
+.bg-main {
+  background-image: linear-gradient(172.7deg, #FFD370 5.12%, #FFD370 53.33%, #FFD370 53.44%, #FFFFFF 53.45%, #FFFFFF 94.32%);
 }

@@ -17,6 +17,11 @@ const routes = [
         component: () => import('../components/HomeRegister.vue')
       }
     ]
+  },
+  {
+    path: '/todo',
+    name: 'todo',
+    component: () => import('../views/TodoView.vue')
   }
 ]
 
