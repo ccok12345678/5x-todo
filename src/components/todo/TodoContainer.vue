@@ -9,6 +9,8 @@
 
       <TodoTabs />
 
+      <TodoItems />
+
     </div>
 
   </main>
@@ -17,4 +19,5 @@
 <script setup>
 import TodoInput from './TodoInput.vue'
 import TodoTabs from './TodoTabs.vue'
+import TodoItems from './TodoItems.vue'
 </script>

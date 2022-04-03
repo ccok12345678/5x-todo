@@ -89,3 +89,53 @@ nav .logo img {
     border-bottom: 2px solid $dark;
   }
 }
+.todo-items-list {
+  padding-top: 6px;
+  padding-bottom: 1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1rem;
+}
+.todo-item {
+  margin-bottom: 2px;
+}
+.todo-item > div {
+  width: 100%;
+  border-bottom: 1px solid #E5E5E5;
+  padding: 15px 0;
+}
+.todo-item > button {
+  visibility: hidden;
+}
+.todo-item:hover > button{
+  visibility: visible;
+}
+@mixin todoActin {
+  transition: all .2s linear;
+}
+.todo-item span {
+  @include todoActin;
+
+  &.done {
+    text-decoration: line-through;
+    color: $todo-gray;
+  }
+}
+.btn-check {
+  padding: 0;
+  width: 20px; height: 20px;
+  border: 1px #9f9a91 solid;
+  border-radius: 5px;
+  @include todoActin;
+
+  &.done {
+    border: none;
+    background-image: url('../images/check_icon.svg');
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+  &:hover:not(.done) {
+    border: none;
+    background: $primary;
+  }
+}
