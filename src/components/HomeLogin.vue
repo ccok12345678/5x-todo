@@ -25,3 +25,9 @@
 
   </div>
 </template>
+
+<style lang="scss" scoped>
+form {
+  max-width: 304px;
+}
+</style>
