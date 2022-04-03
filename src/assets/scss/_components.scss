@@ -1,28 +1,6 @@
 $todo-gray: #9a9a91;
 
-.form {
-
-  label {
-    font-size: .875rem;
-    font-weight: 700;
-    line-height: 1.25rem;
-    margin-top: 16px;
-    margin-bottom: 4px;
-  }
-  input {
-    width: 100%;
-    border: none;
-    padding: .75rem 1rem;
-    border-radius: 10px;
-
-    &:focus {
-      outline: none;
-    }
-  }
-  button {
-    padding: .75rem 48px;
-  }
-}
+@import './components/form';
 
 .btn {
   background-color: transparent;
