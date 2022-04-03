@@ -1,5 +1,4 @@
 .form {
-  max-width: 304px;
 
   label {
     font-size: .875rem;
@@ -13,10 +12,13 @@
     border: none;
     padding: .75rem 1rem;
     border-radius: 10px;
+
+    &:focus {
+      outline: none;
+    }
   }
   button {
     padding: .75rem 48px;
-    margin-top: 24px;
   }
 }
 
@@ -56,4 +58,15 @@ nav .logo img {
 
 .bg-main {
   background-image: linear-gradient(172.7deg, #FFD370 5.12%, #FFD370 53.33%, #FFD370 53.44%, #FFFFFF 53.45%, #FFFFFF 94.32%);
+}
+
+.todo-container {
+  margin-top: 35px;
+  width: 82.9%;
+  max-width: 500px;
+}
+.todo-input-group {
+  background-color: $white;
+  border-radius: 10px;
+  padding-right: .25rem;
 }
