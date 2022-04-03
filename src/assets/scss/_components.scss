@@ -75,6 +75,8 @@ nav .logo img {
 .todo-body {
   background-color: $white;
   border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+  font-size: 14px;
   overflow: hidden;
 }
 .todo-tabs button {
@@ -137,5 +139,15 @@ nav .logo img {
   &:hover:not(.done) {
     border: none;
     background: $primary;
+  }
+}
+.todo-footer {
+  padding: 0 3rem 2rem 1.5rem;
+}
+.todo-footer button {
+  color: $todo-gray;
+
+  &:hover {
+    color: $dark;
   }
 }
