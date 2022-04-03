@@ -13,7 +13,7 @@
       <input type="password" name="password" id="password"
         placeholder="請輸入密碼">
 
-      <button type="submit" class="btn btn-dark">
+      <button type="submit" class="btn btn-dark mt-4">
         登入
       </button>
 

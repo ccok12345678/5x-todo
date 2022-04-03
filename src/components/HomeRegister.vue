@@ -21,7 +21,7 @@
       <input type="password" name="password" id="password"
         placeholder="請再次輸入輸入密碼">
 
-      <button type="submit" class="btn btn-dark">
+      <button type="submit" class="btn btn-dark mt-4">
         註冊帳號
       </button>
 
