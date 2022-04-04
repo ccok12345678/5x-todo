@@ -11,6 +11,6 @@
 </template>
 
 <script setup>
-import Navbar from '@/components/TodoNavbar.vue'
+import Navbar from '@/components/todo/TodoNavbar.vue'
 import TodoContainer from '@/components/todo/TodoContainer.vue'
 </script>
