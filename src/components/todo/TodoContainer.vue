@@ -5,7 +5,7 @@
       <TodoInput />
     </header>
 
-    <div class="todo-body mt-3">
+    <div class="todo-body mt-3" v-if="todoStore.todoList.length">
 
       <TodoTabs />
 
@@ -14,7 +14,7 @@
       <TodoFooter />
     </div>
 
-    <NoTodo v-if="false" />
+    <NoTodo v-else/>
 
   </main>
 </template>

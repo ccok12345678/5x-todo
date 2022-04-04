@@ -25,10 +25,12 @@ import { useRouter } from 'vue-router'
 import { Toast } from '@/mixins/toast'
 import Cookie from 'js-cookie'
 import useUserStore from '@/stores/userStore'
+import useTodoStore from '@/stores/todoStore'
 import BrandLogo from '@/components/BrandLogo.vue'
 
 const router = useRouter()
 const user = useUserStore()
+const todoStore = useTodoStore()
 const nickname = Cookie.get('5x-nickname')
 
 const logout = async () => {
@@ -48,6 +50,8 @@ const logout = async () => {
       })
       Cookie.remove('5x-todo')
       Cookie.remove('5x-nickname')
+      todoStore.$reset()
+      user.$reset()
       router.push('/')
     } else {
       Toast.fire({
