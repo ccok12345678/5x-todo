@@ -49,6 +49,7 @@ import Cookie from 'js-cookie'
 import Swal from 'sweetalert2'
 import checkLogin from '@/methods/checkLogin'
 import { Toast } from '@/mixins/toast'
+import useUserStore from '@/stores/UserStore'
 
 const router = useRouter()
 
@@ -62,6 +63,8 @@ onMounted(async () => {
     router.push('/todo')
   }
 })
+
+const userName = useUserStore()
 
 const submitLogin = async () => {
   const { email, password } = user
@@ -77,14 +80,19 @@ const submitLogin = async () => {
   try {
     const res = await login
     const data = await res.json()
-    if (data.message === '登入成功') {
+    if (res.ok) {
       console.log(data)
       const authorization = [...res.headers][0][1]
       Cookie.set('5x-todo', authorization)
+      Cookie.set('5x-nickname', data.nickname)
+
+      userName.$patch({ name: data.nickname })
+
       Toast.fire({
         icon: 'success',
         title: data.message
       })
+
       router.push('/todo')
     } else {
       Swal.fire({
