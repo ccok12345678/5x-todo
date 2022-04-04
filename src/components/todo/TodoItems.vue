@@ -1,6 +1,8 @@
 <template>
   <ul class="todo-items-list">
-    <li class="d-flex justify-content-between align-items-center todo-item">
+
+    <li v-for="todo in todoList" :key="todo.id"
+      class="d-flex justify-content-between align-items-center todo-item">
 
       <div class="d-flex align-items-center">
 
@@ -11,9 +13,9 @@
           title="Done!"
         ></button>
 
-        <span
-          :class="{ 'done': isDone }"
-        >把冰箱發霉的檸檬拿去丟</span>
+        <span :class="{ 'done': isDone }">
+          {{ todo.content }}
+        </span>
 
       </div>
 
@@ -28,6 +30,11 @@
 
 <script setup>
 import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import useTodoStore from '@/stores/todoStore'
+
+const todoStore = useTodoStore()
+const { todoList } = storeToRefs(todoStore)
 
 const isDone = ref(false)
 </script>
