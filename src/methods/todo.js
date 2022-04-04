@@ -21,6 +21,14 @@ export async function addTodo (todo) {
     },
     body: JSON.stringify({ todo: { content: todo } })
   })
-  const res = await add
-  return res.ok
+  return await add
+}
+
+export async function removeTodo (todoId) {
+  const api = `https://todoo.5xcamp.us/todos/${todoId}`
+  const remove = fetch(api, {
+    method: 'DELETE',
+    headers: { Authorization: Cookies.get('5x-todo') }
+  })
+  return await remove
 }

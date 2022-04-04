@@ -19,7 +19,9 @@
 
       </div>
 
-      <button type="button" class="btn" title="刪除">
+      <button type="button" class="btn" title="刪除"
+        @click='handleRemove(todo.id)'
+      >
         <img src="@/assets/images/x_icon.svg" alt="cancel icon">
       </button>
 
@@ -31,10 +33,26 @@
 <script setup>
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
+import { removeTodo, getTodo } from '@/methods/todo'
 import useTodoStore from '@/stores/todoStore'
 
 const todoStore = useTodoStore()
 const { todoList } = storeToRefs(todoStore)
+
+const handleRemove = async (todoId) => {
+  console.log(todoId)
+  try {
+    const res = await removeTodo(todoId)
+    const data = res.json()
+    if (res.ok) {
+      todoList.value = await getTodo()
+    } else {
+      throw new Error(data.message)
+    }
+  } catch (error) {
+    console.log('remove error:', error)
+  }
+}
 
 const isDone = ref(false)
 </script>
