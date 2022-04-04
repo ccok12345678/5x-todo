@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent class="form">
+  <form @submit.prevent="handleSubmit" class="form">
 
     <label for="addTodo" class="visually-hidden">
       輸入待辦
@@ -12,9 +12,10 @@
         id="addTodo"
         name="addTodo"
         placeholder="新增代辦事項"
-        class="">
+        class=""
+        v-model="todo">
 
-      <button class="btn p-0" type="button">
+      <button class="btn p-0" type="submit">
         <img src="@/assets/images/plus_button.svg" alt="plus button">
       </button>
 
@@ -22,6 +23,28 @@
   </form>
 </template>
 
-<style lang="scss" scoped>
+<script setup>
+import { ref } from 'vue'
+import { addTodo, getTodo } from '@/methods/todo'
+import useTodoStore from '@/stores/todoStore'
 
-</style>
+const todo = ref('')
+
+const todoStore = useTodoStore()
+
+const handleSubmit = async () => {
+  try {
+    const res = await addTodo(todo.value)
+    const data = await res.json()
+    if (res.ok) {
+      todoStore.todoList = await getTodo()
+      todo.value = ''
+    } else {
+      throw new Error(data.message)
+    }
+  } catch (error) {
+    console.log('add error', error)
+  }
+}
+
+</script>

@@ -7,5 +7,20 @@ export async function getTodo () {
   })
 
   const res = await get
-  return await res.json()
+  const data = await res.json()
+  return await data.todos
+}
+
+export async function addTodo (todo) {
+  const api = 'https://todoo.5xcamp.us/todos'
+  const add = fetch(api, {
+    method: 'POST',
+    headers: {
+      Authorization: Cookies.get('5x-todo'),
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ todo: { content: todo } })
+  })
+  const res = await add
+  return res.ok
 }

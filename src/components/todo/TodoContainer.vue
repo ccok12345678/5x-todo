@@ -33,9 +33,7 @@ const todoStore = useTodoStore()
 
 onMounted(async () => {
   try {
-    const { todos } = await getTodo()
-    todoStore.todoList = todos
-    console.log(todoStore.todoList)
+    todoStore.todoList = await getTodo()
   } catch (error) {
     console.log('get error', error)
   }
