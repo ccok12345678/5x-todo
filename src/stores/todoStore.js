@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { getTodo } from '@/methods/todo'
 
 export default defineStore('todo', {
   state: () => ({
@@ -23,6 +24,9 @@ export default defineStore('todo', {
         default:
           return this.todoList
       }
+    },
+    async getTodoData () {
+      this.todoList = await getTodo()
     }
   }
 })
