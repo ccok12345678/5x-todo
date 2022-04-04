@@ -8,19 +8,19 @@
 
         <button type="button"
           class="btn btn-check me-3"
-          @click="isDone = !isDone"
-          :class="{ 'done': isDone }"
+          @click="handleClick(todo.id, toggleTodo)"
+          :class="{ 'done': todo.completed_at }"
           title="Done!"
         ></button>
 
-        <span :class="{ 'done': isDone }">
+        <span :class="{ 'done': todo.completed_at }">
           {{ todo.content }}
         </span>
 
       </div>
 
       <button type="button" class="btn" title="刪除"
-        @click='handleRemove(todo.id)'
+        @click='handleClick(todo.id, removeTodo)'
       >
         <img src="@/assets/images/x_icon.svg" alt="cancel icon">
       </button>
@@ -31,18 +31,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
-import { removeTodo, getTodo } from '@/methods/todo'
+import { removeTodo, getTodo, toggleTodo } from '@/methods/todo'
 import useTodoStore from '@/stores/todoStore'
 
 const todoStore = useTodoStore()
 const { todoList } = storeToRefs(todoStore)
 
-const handleRemove = async (todoId) => {
-  console.log(todoId)
+const handleClick = async (todoId, func) => {
   try {
-    const res = await removeTodo(todoId)
+    const res = await func(todoId)
     const data = res.json()
     if (res.ok) {
       todoList.value = await getTodo()
@@ -54,5 +52,4 @@ const handleRemove = async (todoId) => {
   }
 }
 
-const isDone = ref(false)
 </script>

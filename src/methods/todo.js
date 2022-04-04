@@ -32,3 +32,12 @@ export async function removeTodo (todoId) {
   })
   return await remove
 }
+
+export async function toggleTodo (todoId) {
+  const api = `https://todoo.5xcamp.us/todos/${todoId}/toggle`
+  const toggle = fetch(api, {
+    method: 'PATCH',
+    headers: { Authorization: Cookies.get('5x-todo') }
+  })
+  return await toggle
+}
