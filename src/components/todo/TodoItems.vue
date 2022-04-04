@@ -1,7 +1,7 @@
 <template>
   <ul class="todo-items-list">
 
-    <li v-for="todo in todoList" :key="todo.id"
+    <li v-for="todo in todos" :key="todo.id"
       class="d-flex justify-content-between align-items-center todo-item">
 
       <div class="d-flex align-items-center">
@@ -31,12 +31,18 @@
 </template>
 
 <script setup>
+import { ref, watchEffect } from 'vue'
 import { storeToRefs } from 'pinia'
 import { removeTodo, getTodo, toggleTodo } from '@/methods/todo'
 import useTodoStore from '@/stores/todoStore'
 
 const todoStore = useTodoStore()
 const { todoList } = storeToRefs(todoStore)
+
+const todos = ref([])
+watchEffect(() => {
+  todos.value = todoStore.showTodos()
+})
 
 const handleClick = async (todoId, func) => {
   try {
