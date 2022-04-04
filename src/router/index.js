@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import checkLogin from '@/methods/checkLogin.js'
 
 const routes = [
   {
@@ -21,7 +22,12 @@ const routes = [
   {
     path: '/todo',
     name: 'todo',
-    component: () => import('../views/TodoView.vue')
+    component: () => import('../views/TodoView.vue'),
+    beforeEnter: async () => {
+      if (!await checkLogin()) {
+        return '/'
+      }
+    }
   }
 ]
 

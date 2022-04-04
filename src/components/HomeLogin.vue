@@ -3,7 +3,7 @@
     <h4 class="fw-bold mb-4 align-self-start">最實用的線上待辦事項服務</h4>
 
     <form class="form d-flex flex-column align-items-center w-100"
-      @submit.prevent>
+      @submit.prevent="submitLogin">
 
       <label for="email" class="align-self-start">Email</label>
       <input
@@ -11,9 +11,10 @@
         name="email"
         id="email"
         placeholder="請輸入Email"
-        required>
+        required
+        v-model="user.email">
       <small class="invalid-msg text-danger align-self-start">
-        此欄位不可為空
+        請輸入正確格式
       </small>
 
       <label for="password" class="align-self-start">密碼</label>
@@ -22,7 +23,8 @@
         name="password"
         id="password"
         placeholder="請輸入密碼"
-        required>
+        required
+        v-model="user.password">
       <small class="invalid-msg text-danger align-self-start">
         此欄位不可為空
       </small>
@@ -39,6 +41,64 @@
 
   </div>
 </template>
+
+<script setup>
+import { reactive, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import Cookie from 'js-cookie'
+import Swal from 'sweetalert2'
+import checkLogin from '@/methods/checkLogin'
+import { Toast } from '@/mixins/toast'
+
+const router = useRouter()
+
+const user = reactive({
+  email: '',
+  password: ''
+})
+
+onMounted(async () => {
+  if (await checkLogin()) {
+    router.push('/todo')
+  }
+})
+
+const submitLogin = async () => {
+  const { email, password } = user
+  const url = 'https://todoo.5xcamp.us/users/sign_in'
+  const login = fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ user: { email, password } })
+  })
+
+  try {
+    const res = await login
+    const data = await res.json()
+    if (data.message === '登入成功') {
+      console.log(data)
+      const authorization = [...res.headers][0][1]
+      Cookie.set('5x-todo', authorization)
+      Toast.fire({
+        icon: 'success',
+        title: data.message
+      })
+      router.push('/todo')
+    } else {
+      Swal.fire({
+        titleText: data.message,
+        text: '請輸入正確資料或註冊',
+        icon: 'error'
+      })
+      console.log(data.message)
+    }
+  } catch (error) {
+    console.log('login error:', error)
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 form {
