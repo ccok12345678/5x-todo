@@ -8,6 +8,11 @@ export default async function checkLogin () {
   const check = fetch(api, {
     headers: { Authorization: cookie }
   })
-  const res = await check
-  return res.ok
+
+  try {
+    const res = await check
+    return res.ok
+  } catch (error) {
+    console.error('check error', error)
+  }
 }
