@@ -92,7 +92,6 @@ const submitLogin = async () => {
         text: '請輸入正確資料或註冊',
         icon: 'error'
       })
-      console.log(data.message)
     }
   } catch (error) {
     console.log('login error:', error)
